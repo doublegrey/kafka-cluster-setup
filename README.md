@@ -45,7 +45,7 @@ dataDir=/data/zookeeper
 clientPort=2181
 # maximum number of client connections
 # be sure to change this value in production
-# I don't know which value fits the most because out services will use zk to store data
+# I don't know which value fits the most because our services will use zk to store data
 # maxClientCnxns=0 removes the limit on concurrent connections
 maxClientCnxns=0
 
