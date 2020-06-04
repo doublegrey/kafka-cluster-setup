@@ -186,3 +186,7 @@ $ sudo systemctl daemon-reload
 $ sudo systemctl enable kafka
 $ sudo systemctl start kafka
 ```
+
+## You Are Ready 👑
+
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
