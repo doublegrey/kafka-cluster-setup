@@ -16,7 +16,7 @@ $ sudo apt-get install zsh
 
 ```bash
 $ sudo useradd zk -m
-# use /bin/bash if you zsh is not installed
+# use /bin/bash if zsh is not installed
 $ sudo usermod --shell /bin/zsh zk
 $ sudo passwd zk
 $ sudo usermod -aG sudo zk
@@ -117,7 +117,7 @@ $ sudo systemctl start zookeeper
 
 ```bash
 $ sudo useradd kafka -m
-# use /bin/bash if you zsh is not installed
+# use /bin/bash if zsh is not installed
 $ sudo usermod --shell /bin/zsh kafka
 $ sudo passwd kafka
 $ sudo usermod -aG sudo kafka
