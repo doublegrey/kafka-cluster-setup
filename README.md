@@ -1,5 +1,14 @@
 # Kafka Multi Node Cluster Setup
 
+
+
+## Notes
+
+* Make sure to remove all comments from the code blocks below
+* Don't forget to change scala version if you chose kafka_2.13
+
+
+
 ## Install dependencies
 
 ```bash
@@ -60,10 +69,7 @@ server.3=zookeeper3.lv:2888:3888
 ### Create Node ID file
 
 ```bash
-$ sudo nano /data/zookeeper/myid
-...
-# enter unique id
-1
+$ sudo echo 1 > /data/zookeeper/myid #unique number for each broker
 ```
 
 ### Setup ZooKeeper Systemd Unit Service
@@ -97,8 +103,8 @@ WantedBy=default.target
 ### Change Folder Permissions
 
 ```bash
-$ sudo chown zk:zk /opt/zookeeper
-$ sudo chown zk:zk /data/zookeeper
+$ sudo chown -R zk:zk /opt/zookeeper
+$ sudo chown -R zk:zk /data/zookeeper
 ```
 
 ### Start ZooKeeper Broker
@@ -126,9 +132,9 @@ $ sudo usermod -aG sudo kafka
 ### Download Apache Kafka
 
 ```bash
-$ wget https://downloads.apache.org/kafka/2.5.0/kafka_2.13-2.5.0.tgz
-$ tar -xvf kafka_2.13-2.5.0.tgz
-$ sudo mv kafka_2.13-2.5.0 /opt/kafka
+$ wget https://downloads.apache.org/kafka/2.5.0/kafka_2.12-2.5.0.tgz
+$ tar -xvf kafka_2.12-2.5.0.tgz
+$ sudo mv kafka_2.12-2.5.0 /opt/kafka
 
 # create folder to store data
 $ sudo mkdir -p /data/kafka
@@ -142,9 +148,14 @@ $ vim /opt/kafka/config/server.properties
 # change broker.id to a unique value on every machine
 broker.id=1
 # change log.dirs if you don't want to lose all data after reboot
-log.dirs=/data/kafka
+log.dirs=/data/kafka/
+
+listeners=PLAINTEXT://:9092
+advertised.listeners=PLAINTEXT://IP_ADDR:9092
+advertised.host.name=IP_ADDR
+
 # ZooKeeper connection string (comma separated host:port pairs)
-zookeeper.connect=kafka1.lv:2181,kafka2.lv:2181,kafka3.lv:2181
+zookeeper.connect=zookeeper1.lv:2181,zookeeper2.lv:2181,zookeeper3.lv:2181
 ```
 
 ### Setup Kafka Systemd Unit Service
@@ -175,8 +186,8 @@ WantedBy=default.target
 ### Change Folder Permissions
 
 ```bash
-$ sudo chown kafka:kafka /opt/kafka
-$ sudo chown kafka:kafka /data/kafka
+$ sudo chown -R kafka:kafka /opt/kafka
+$ sudo chown -R kafka:kafka /data/kafka
 ```
 
 ### Start Kafka Broker
