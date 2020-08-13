@@ -5,7 +5,7 @@
 ## Notes
 
 * Make sure to remove all comments from the code blocks below
-* Don't forget to change scala version if you chose kafka_2.13
+* Don't forget to change scala version if you choose kafka_2.13
 
 
 
@@ -15,8 +15,6 @@
 $ sudo apt update
 $ sudo apt install default-jdk
 $ sudo apt-get install scala
-# if you are true linuxoid
-$ sudo apt-get install zsh
 ```
 
 ## ZooKeeper Cluster Setup
@@ -25,8 +23,7 @@ $ sudo apt-get install zsh
 
 ```bash
 $ sudo useradd zk -m
-# use /bin/bash if zsh is not installed
-$ sudo usermod --shell /bin/zsh zk
+$ sudo usermod --shell /bin/bash zk
 $ sudo passwd zk
 $ sudo usermod -aG sudo zk
 ```
@@ -123,8 +120,7 @@ $ sudo systemctl start zookeeper
 
 ```bash
 $ sudo useradd kafka -m
-# use /bin/bash if zsh is not installed
-$ sudo usermod --shell /bin/zsh kafka
+$ sudo usermod --shell /bin/bash kafka
 $ sudo passwd kafka
 $ sudo usermod -aG sudo kafka
 ```
